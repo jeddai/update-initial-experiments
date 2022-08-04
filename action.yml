@@ -1,15 +1,18 @@
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'Update Initial Experiments'
+description: 'Downloads and saves the initial experiments'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  repo-path:
+    description: 'Relative or absolute path to the checked out repository'
     required: true
-    default: 'World'
+  output-path:
+    description: 'Relative path of the file to which the initial experiments should be written'
+    required: true
 outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  changed:
+    description: 'A value denoting the number of files changed'
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.who-to-greet }}
+    - ${{ inputs.repo-path }}
+    - ${{ inputs.output-path }}
