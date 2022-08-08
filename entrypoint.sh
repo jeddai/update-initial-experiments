@@ -1,6 +1,6 @@
 #!/bin/sh -l
 
-git config --global --add safe.directory "$GITHUB_WORKSPACE/$1"
+git config --global --add safe.directory "/github/workspace/$1"
 
 cd $1
 git fetch
