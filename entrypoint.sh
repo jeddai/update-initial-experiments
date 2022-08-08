@@ -3,7 +3,7 @@
 git config --global --add safe.directory "/github/workspace/$1"
 
 cd $1
-git fetch
+git fetch origin automation/update-experiments-json
 git checkout -B automation/update-experiments-json
 curl https://experimenter.services.mozilla.com/api/v6/experiments/?is_first_run=True | jq '{"data":map(select(.appName == "fenix"))}' > $2
 
