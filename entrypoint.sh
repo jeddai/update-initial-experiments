@@ -1,6 +1,7 @@
 #!/bin/sh -l
 
 cd $1
+git fetch
 git checkout -B automation/update-experiments-json
 curl https://experimenter.services.mozilla.com/api/v6/experiments/?is_first_run=True | jq '{"data":map(select(.appName == "fenix"))}' > $2
 export CHANGED=$(git status | grep '$2' | wc -l)
