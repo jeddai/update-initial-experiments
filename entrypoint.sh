@@ -3,8 +3,6 @@
 git config --global --add safe.directory "/github/workspace/$1"
 
 cd $1
-git fetch origin $2
-git checkout -B $2
 curl $4 | jq '{"data":map(select(.appName == "fenix"))}' >  $3
 
 git status
