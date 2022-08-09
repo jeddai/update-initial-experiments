@@ -16,6 +16,10 @@ This action downloads a list of experiments from experimenter and writes them to
 
 URL from which to fetch Nimbus experiments. Default: `https://experimenter.services.mozilla.com/api/v6/experiments/?is_first_run=True`
 
+### `app-name`
+
+**Required** App name by which to filter experiments. Example: `fenix`
+
 ## Outputs
 
 ### `changed`

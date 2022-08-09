@@ -3,7 +3,7 @@
 git config --global --add safe.directory "/github/workspace/$1"
 
 cd $1
-curl $3 | jq '{"data":map(select(.appName == "fenix"))}' >  $2
+curl $3 | jq '{"data":map(select(.appName == "$4"))}' >  $2
 
 git status
 export CHANGED=$(git status -s | wc -l)

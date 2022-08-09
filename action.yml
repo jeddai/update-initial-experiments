@@ -11,6 +11,9 @@ inputs:
     description: 'URL from which to fetch Nimbus experiments'
     default: 'https://experimenter.services.mozilla.com/api/v6/experiments/?is_first_run=True'
     required: false
+  app-name:
+    description: 'App name by which to filter experiments'
+    required: true
 outputs:
   changed:
     description: 'The number of files that were modified as part of the script'
@@ -21,3 +24,4 @@ runs:
     - ${{ inputs.repo-path }}
     - ${{ inputs.output-path }}
     - ${{ inputs.experimenter-url }}
+    - ${{ inputs.app-name }}
