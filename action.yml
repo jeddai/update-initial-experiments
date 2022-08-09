@@ -4,10 +4,6 @@ inputs:
   repo-path:
     description: 'The relative or absolute path to the checked out repository'
     required: true
-  branch:
-    description: 'The branch on which to make potential changes'
-    default: automation/update-experiments-json
-    required: false
   output-path:
     description: 'The relative file path (from the repo path) to which the downloaded experiments should be written'
     required: true
@@ -23,6 +19,5 @@ runs:
   image: 'Dockerfile'
   args:
     - ${{ inputs.repo-path }}
-    - ${{ inputs.branch }}
     - ${{ inputs.output-path }}
     - ${{ inputs.experimenter-url }}

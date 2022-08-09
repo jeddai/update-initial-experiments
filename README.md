@@ -8,10 +8,6 @@ This action downloads a list of experiments from experimenter and writes them to
 
 **Required** The relative or absolute path to the checked out repository. Example: `main`
 
-### `branch`
-
-The branch on which to make potential changes. Default: `automation/update-experiments-json`
-
 ### `output-path`
 
 **Requried** The relative file path (from the repo path) to which the downloaded experiments should be written. Example: `app/src/main/res/raw/initial_experiments.json`
