@@ -2,22 +2,22 @@ name: 'Update Initial Experiments'
 description: 'Downloads and saves the initial experiments'
 inputs:
   repo-path:
-    description: 'Relative or absolute path to the checked out repository'
+    description: 'The relative or absolute path to the checked out repository'
     required: true
   branch:
-    description: 'The branch on which to make the potential changes'
+    description: 'The branch on which to make potential changes'
     default: automation/update-experiments-json
     required: false
   output-path:
-    description: 'Relative path of the file to which the initial experiments should be written'
+    description: 'The relative file path (from the repo path) to which the downloaded experiments should be written'
     required: true
   experimenter-url:
-    description: 'URL to fetch Nimbus experiments'
+    description: 'URL from which to fetch Nimbus experiments'
     default: 'https://experimenter.services.mozilla.com/api/v6/experiments/?is_first_run=True'
     required: false
 outputs:
   changed:
-    description: 'A value denoting the number of files changed'
+    description: 'The number of files that were modified as part of the script'
 runs:
   using: 'docker'
   image: 'Dockerfile'

@@ -1,23 +1,37 @@
-# Hello world docker action
+# Update initial experiments docker action
 
-This action prints "Hello World" to the log or "Hello" + the name of a person to greet. To learn how this action was built, see "[Creating a Docker container action](https://help.github.com/en/articles/creating-a-docker-container-action)" in the GitHub Help documentation.
+This action downloads a list of experiments from experimenter and writes them to the repository. If changes are made, it will open a new pull request or update an existing pull request.
 
 ## Inputs
 
-### `who-to-greet`
+### `repo-path`
 
-**Required** The name of the person to greet. Default `"World"`.
+**Required** The relative or absolute path to the checked out repository. Example: `main`
+
+### `branch`
+
+The branch on which to make potential changes. Default: `automation/update-experiments-json`
+
+### `output-path`
+
+**Requried** The relative file path (from the repo path) to which the downloaded experiments should be written. Example: `app/src/main/res/raw/initial_experiments.json`
+
+### `experimenter-url`
+
+URL from which to fetch Nimbus experiments. Default: `https://experimenter.services.mozilla.com/api/v6/experiments/?is_first_run=True`
 
 ## Outputs
 
-### `time`
+### `changed`
 
-The time we greeted you.
+The number of files that were modified as part of the script.
 
 ## Example usage
 
 ```yaml
-uses: actions/hello-world-docker-action@master
+uses: jeddai/update-initial-experiments@v1
 with:
-  who-to-greet: 'Mona the Octocat'
+  repo-path: main
+  output-path: app/src/main/res/raw/initial_experiments.json
+  experimenter-url: https://experimenter.services.mozilla.com/api/v6/experiments/
 ```
