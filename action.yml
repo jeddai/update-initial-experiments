@@ -4,9 +4,17 @@ inputs:
   repo-path:
     description: 'Relative or absolute path to the checked out repository'
     required: true
+  branch:
+    description: 'The branch on which to make the potential changes'
+    default: automation/update-experiments-json
+    required: false
   output-path:
     description: 'Relative path of the file to which the initial experiments should be written'
     required: true
+  experimenter-url:
+    description: 'URL to fetch Nimbus experiments'
+    default: 'https://experimenter.services.mozilla.com/api/v6/experiments/?is_first_run=True'
+    required: false
 outputs:
   changed:
     description: 'A value denoting the number of files changed'
@@ -15,4 +23,6 @@ runs:
   image: 'Dockerfile'
   args:
     - ${{ inputs.repo-path }}
+    - ${{ inputs.branch }}
     - ${{ inputs.output-path }}
+    - ${{ inputs.experimenter-url }}
