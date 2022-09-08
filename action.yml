@@ -14,9 +14,14 @@ inputs:
   app-name:
     description: 'App name by which to filter experiments'
     required: true
+  branch:
+    description: 'Remote branch to check diff against'
+    required: true
 outputs:
   changed:
     description: 'The number of files that were modified as part of the script'
+  changed-branch:
+    description: 'The number of files that were modified as compared to the supplied remote branch'
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -25,3 +30,4 @@ runs:
     - ${{ inputs.output-path }}
     - ${{ inputs.experimenter-url }}
     - ${{ inputs.app-name }}
+    - ${{ inputs.branch }}
