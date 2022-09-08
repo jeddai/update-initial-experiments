@@ -17,9 +17,16 @@ then
     export REMOTE_BRANCH=$(git ls-remote --head origin $5)
     if [[ -z $REMOTE_BRANCH ]];
     then
-    export CHANGED_BRANCH=1
+        export CHANGED_BRANCH=1
+        echo "Remote branch currently does not exist; outputting that there are changes."
     else
-    export CHANGED_BRANCH=$(git --no-pager diff origin/$5 | grep $2 | wc -l)
+        export CHANGED_BRANCH=$(git --no-pager diff origin/$5 | grep $2 | wc -l)
+        if test $CHANGED_BRANCH -eq 1
+        then
+            echo "Remote branch differs from current changes, it should be updated."
+        else
+            echo "Remote branch and current changes are equivalent."
+        fi
     fi
 else
     echo "No changes to make, exiting job"
