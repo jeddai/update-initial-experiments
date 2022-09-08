@@ -20,11 +20,19 @@ URL from which to fetch Nimbus experiments. Default: `https://experimenter.servi
 
 **Required** App name by which to filter experiments. Example: `fenix`
 
+### `branch`
+
+**Required** Remote branch to check diff against. Example: `automation/update-nimbus-experiments`
+
 ## Outputs
 
 ### `changed`
 
 The number of files that were modified as part of the script.
+
+### `changed-branch`
+
+The number of files that were modified as compared to the supplied remote branch.
 
 ## Example usage
 
@@ -34,4 +42,5 @@ with:
   repo-path: main
   output-path: app/src/main/res/raw/initial_experiments.json
   experimenter-url: https://experimenter.services.mozilla.com/api/v6/experiments/
+  branch: automation/update-nimbus-experiments
 ```
