@@ -31,3 +31,5 @@ runs:
     - ${{ inputs.experimenter-url }}
     - ${{ inputs.app-name }}
     - ${{ inputs.branch }}
+    - ${{ inputs.language }}
+    - ${{ inputs.package }}
