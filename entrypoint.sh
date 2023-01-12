@@ -7,16 +7,16 @@ export DATA=$(curl $3 | jq --arg APP_NAME "$4" '{"data":map(select(.appName == $
 
 if [[ $2 =~ .*\.json ]]; then
     echo -e "$DATA" > $2
-elif [[ $2 =~ .*\.swift ]]; then
-    echo -e "// This Source Code Form is subject to the terms of the Mozilla Public\n// License, v. 2.0. If a copy of the MPL was not distributed with this\n// file, You can obtain one at http://mozilla.org/MPL/2.0/\n\nimport Foundation\n\npublic struct FirstRunExperiments {\n    public static let value = \"\"\"$DATA\"\"\"\n}" > $2
-elif [[ $2 =~ .*\.kt ]]; then
-    if [[ -z $6 ]]; then
-        echo "Package is not specified. Package is a required value for the kotlin language."
-        exit 1
-    fi
-    echo -e "// This Source Code Form is subject to the terms of the Mozilla Public\n// License, v. 2.0. If a copy of the MPL was not distributed with this\n// file, You can obtain one at http://mozilla.org/MPL/2.0/\n\npackage $6\n\nconst val firstRunExperiments = \"\"\"$DATA\"\"\"" > $2
+# elif [[ $2 =~ .*\.swift ]]; then
+#     echo -e "// This Source Code Form is subject to the terms of the Mozilla Public\n// License, v. 2.0. If a copy of the MPL was not distributed with this\n// file, You can obtain one at http://mozilla.org/MPL/2.0/\n\nimport Foundation\n\npublic struct FirstRunExperiments {\n    public static let value = \"\"\"$DATA\"\"\"\n}" > $2
+# elif [[ $2 =~ .*\.kt ]]; then
+#     if [[ -z $6 ]]; then
+#         echo "Package is not specified. Package is a required value for the kotlin language."
+#         exit 1
+#     fi
+#     echo -e "// This Source Code Form is subject to the terms of the Mozilla Public\n// License, v. 2.0. If a copy of the MPL was not distributed with this\n// file, You can obtain one at http://mozilla.org/MPL/2.0/\n\npackage $6\n\n/*\n * This is a list of the first-run experiments. It will be passed to Nimbus during startup.\n */\nconst val firstRunExperiments = \"\"\"$DATA\"\"\"" > $2
 else
-    echo "Language of output file is not supported. Please choose between 'kotlin', 'swift', or 'json'"
+    echo "Language of output file is not supported. Please set the output to a JSON file."
     exit 1
 fi
 

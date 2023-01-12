@@ -17,9 +17,9 @@ inputs:
   branch:
     description: 'Remote branch to check diff against'
     required: true
-  package:
-    description: 'Kotlin package to which the file should be written. Only required when the output language is Kotlin'
-    required: false
+  # package:
+  #   description: 'Kotlin package to which the file should be written. Only required when the output language is Kotlin'
+  #   required: false
 outputs:
   changed:
     description: 'The number of files that were modified as part of the script'
@@ -34,4 +34,4 @@ runs:
     - ${{ inputs.experimenter-url }}
     - ${{ inputs.app-name }}
     - ${{ inputs.branch }}
-    - ${{ inputs.package }}
+    # - ${{ inputs.package }}
