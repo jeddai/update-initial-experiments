@@ -21,7 +21,7 @@ then
         echo "Remote branch currently does not exist; outputting that there are changes."
     else
         export CHANGED_BRANCH=$(git --no-pager diff origin/$5 | grep $2 | wc -l)
-        if test $CHANGED_BRANCH -eq 1
+        if test $CHANGED_BRANCH -ge 1
         then
             echo "Remote branch differs from current changes, it should be updated."
         else
