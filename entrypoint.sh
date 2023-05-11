@@ -36,6 +36,7 @@ else
     export CHANGED_BRANCH=$(git --no-pager diff origin/$5 | grep $2 | wc -l)
     if test $CHANGED_BRANCH -ge 1
     then
+        export CHANGED=1
         echo "Remote branch differs from current changes, it should be updated."
     else
         echo "Remote branch and current changes are equivalent."
