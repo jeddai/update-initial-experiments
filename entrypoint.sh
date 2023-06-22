@@ -1,4 +1,8 @@
 #!/bin/bash
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
 DIR="$1"
 FILENAME="$2"
 URL="$3"
@@ -16,22 +20,22 @@ pushd "$DIR" || exit 1
 curl "$URL" | jq --arg APP_NAME "$APP_NAME" '{"data":map(select(.appName == $APP_NAME))}' > "$FILENAME"
 
 git status
-export CHANGED=$(git status -s | wc -l)
-export CHANGED_BRANCH=0
+CHANGED=$(git status -s | wc -l)
+CHANGED_BRANCH=0
 
-git add $FILENAME
+git add "$FILENAME"
 echo "$CHANGED file(s) have been modified"
 
-export REMOTE_BRANCH=$(git ls-remote --head origin $BRANCH)
+REMOTE_BRANCH=$(git ls-remote --head origin "$BRANCH")
 if [[ -z $REMOTE_BRANCH ]];
 then
-    export CHANGED_BRANCH=1
+    CHANGED_BRANCH=1
     echo "Remote branch currently does not exist; outputting that there are changes."
 else
-    export CHANGED_BRANCH=$(git --no-pager diff origin/$BRANCH | grep "$FILENAME" | wc -l)
-    if test $CHANGED_BRANCH -ge 1
+    CHANGED_BRANCH=$(git --no-pager diff "origin/$BRANCH" | grep -c "$FILENAME")
+    if test "$CHANGED_BRANCH" -ge 1
     then
-        export CHANGED=1
+        CHANGED=1
         echo "Remote branch differs from current changes, it should be updated."
     else
         echo "Remote branch and current changes are equivalent."
